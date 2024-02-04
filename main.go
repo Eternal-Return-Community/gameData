@@ -15,14 +15,12 @@ type gameInfo struct {
 
 const BASE = "http://cdn.eternalreturn.io"
 
-var format = fmt.Sprintf
-
 func main() {
 	list := gamePath()
 	for _, v := range list {
 		info := gameInfo{Url: v}
 		body := info.Get()
-		download(format("%s/%s", strings.Split(v, "/")[0], body), body)
+		download(fmt.Sprintf("%s/%s", strings.Split(v, "/")[0], body), body)
 	}
 }
 
@@ -65,5 +63,5 @@ func download(endpoint string, fileName string) {
 }
 
 func url(endpoint string) string {
-	return format("%s/%s", BASE, endpoint)
+	return fmt.Sprintf("%s/%s", BASE, endpoint)
 }
